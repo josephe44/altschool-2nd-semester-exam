@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { UserProfile, RepoItems } from "../components";
+import { UserProfile, RepoItems, Spinner } from "../components";
 
 function Home() {
   const [user, setUser] = useState({});
@@ -11,8 +11,8 @@ function Home() {
 
   const location = useLocation();
 
-  const url = "https://api.github.com";
-  const token = "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";
+  const url = process.env.REACT_APP_GITHUB_URL;
+  const token = process.env.REACT_APP_GITHUB_TOKEN;
 
   useEffect(() => {
     fetchUser();
@@ -47,7 +47,7 @@ function Home() {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   // Pagination logic
@@ -55,6 +55,7 @@ function Home() {
   const indexOfFirstNumber = indexOfLastNumber - repoPerPage;
   const currentRepo = repos.slice(indexOfFirstNumber, indexOfLastNumber);
   const numberOfPages = Math.ceil(repos.length / repoPerPage);
+
   return (
     <div className="home">
       <UserProfile user={user} />

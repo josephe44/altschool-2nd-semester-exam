@@ -512,6 +512,28 @@ D926A9
   color: #002147;
 }
 
+/* style for spinner */
+.spinner-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-size: 2rem;
+  color: #002147;
+}
+
+.spinner {
+  animation: spin 0.4s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media screen and (max-width: 719px) {
   .App {
     gap: 12px;

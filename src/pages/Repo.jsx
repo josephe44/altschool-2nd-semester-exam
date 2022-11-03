@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleLeft } from "react-icons/fa";
+import { Spinner } from "../components";
 
 function Repo() {
   const { repoName } = useParams();
   const [repo, setRepo] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const url = "https://api.github.com";
-  const token = "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";
+  const url = process.env.REACT_APP_GITHUB_URL;
+  const token = process.env.REACT_APP_GITHUB_TOKEN;
 
   useEffect(() => {
     fetchRepo();
@@ -26,7 +27,7 @@ function Repo() {
     setLoading(false);
   };
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Spinner />;
 
   return (
     <div className="eachRepo-container">

@@ -25,7 +25,7 @@ function UserProfile({ user }) {
                 <span>Hireable</span>
               </div>
               <div className="banner">
-                <span>Account: {user.plan.name}</span>
+                {/* <span>Account: {user.plan.name}</span> */}
               </div>
             </div>
             <h2>{user.name}</h2>
