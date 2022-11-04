@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
+import RepoContext from "../context/repos/RepoContext";
 
-function Pagination({ numberOfPages, currentPage, setCurrentPage }) {
+function Pagination() {
+  const { numberOfPages, currentPage, setCurrentPage } =
+    useContext(RepoContext);
   const [disabledPrev, setDisabledPrev] = useState(true);
   const [disabledNext, setDisabledNext] = useState(true);
 

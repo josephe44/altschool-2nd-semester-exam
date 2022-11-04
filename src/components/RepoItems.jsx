@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-function RepoItems({ repos }) {
+import RepoContext from "../context/repos/RepoContext";
+
+function RepoItems() {
+  const { currentRepo } = useContext(RepoContext);
+  const repos = currentRepo;
+
   return (
     <div className="repo-bottom">
       <div className="repo-container">

@@ -1,31 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 import { Spinner } from "../components";
+import RepoContext from "../context/repos/RepoContext";
 
 function Repo() {
+  const { loading, repo, fetchRepo } = useContext(RepoContext);
   const { repoName } = useParams();
-  const [repo, setRepo] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const url = process.env.REACT_APP_GITHUB_URL;
-  const token = process.env.REACT_APP_GITHUB_TOKEN;
 
   useEffect(() => {
-    fetchRepo();
+    fetchRepo(repoName);
   }, [repoName]);
-
-  // fetch single repo
-  const fetchRepo = async () => {
-    const response = await fetch(`${url}/repos/josephe44/${repoName}`, {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    });
-    const data = await response.json();
-    setRepo(data);
-    setLoading(false);
-  };
 
   if (loading) return <Spinner />;
 
@@ -53,10 +38,6 @@ function Repo() {
             </div>
           </div>
           <div className="banner-grid">
-            <p className="eachRepo-banner">
-              Type: {repo.owner.type ? repo.owner.type : "none"}
-            </p>
-            <p className="eachRepo-banner">Owner: {repo.owner.login}</p>
             <p className="eachRepo-banner">Fork: {repo.forks_count}</p>
             <p className="eachRepo-banner">
               Language: {repo.language ? repo.language : "none"}

@@ -1,5 +1,10 @@
-import React from "react";
-function HomeRepoItem({ repos }) {
+import React, { useContext } from "react";
+import RepoContext from "../context/repos/RepoContext";
+
+function HomeRepoItem() {
+  const { currentRepo } = useContext(RepoContext);
+
+  const repos = currentRepo.slice(0, 6);
   return (
     <div>
       <div className="repo-container">

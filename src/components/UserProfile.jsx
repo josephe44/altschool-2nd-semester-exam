@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   FaFileAlt,
@@ -8,8 +8,10 @@ import {
   FaUserFriends,
   FaRegEnvelope,
 } from "react-icons/fa";
+import UserContext from "../context/users/UserContext";
 
-function UserProfile({ user }) {
+function UserProfile() {
+  const { user } = useContext(UserContext);
   return (
     <>
       <section className="user-container">
@@ -79,7 +81,7 @@ function UserProfile({ user }) {
                 <div className="portfolio-btn">
                   <button>
                     <Link to="repo-list">
-                      <span>More Repo</span>
+                      <span>View More Repo</span>
                     </Link>
                   </button>
                 </div>
@@ -87,8 +89,6 @@ function UserProfile({ user }) {
             </div>
           </div>
         </div>
-
-        <div>{/* Repo */}</div>
       </section>
     </>
   );
