@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
-function RepoItems({ repos, numberOfPages, currentPage, setCurrentPage }) {
+function RepoItems({ repos }) {
   return (
-    <div>
+    <div className="repo-bottom">
       <div className="repo-container">
         {repos.map((repo) => (
           <div key={repo.id}>
@@ -28,11 +27,6 @@ function RepoItems({ repos, numberOfPages, currentPage, setCurrentPage }) {
           </div>
         ))}
       </div>
-      <Pagination
-        numberOfPages={numberOfPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
 }

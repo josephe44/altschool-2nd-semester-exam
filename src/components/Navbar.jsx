@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { FaBug, FaUser, FaAtom, FaUserCog } from "react-icons/fa";
+import { FaBug, FaUser, FaAtom, FaHome } from "react-icons/fa";
 
 function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
@@ -20,9 +20,19 @@ function Navbar() {
         <li className={location.pathname === "/" ? "link-hover" : "none"}>
           <NavLink to="/">
             <span className="icon">
-              <FaUser />
+              <FaHome />
             </span>
             <span className="path">User</span>
+          </NavLink>
+        </li>
+        <li
+          className={location.pathname === "/repo-list" ? "link-hover" : "none"}
+        >
+          <NavLink to="/repo-list">
+            <span className="icon">
+              <FaUser />
+            </span>
+            <span className="path">Repos</span>
           </NavLink>
         </li>
         <li
@@ -35,16 +45,6 @@ function Navbar() {
               <FaBug />
             </span>
             <span className="path">Error</span>
-          </NavLink>
-        </li>
-        <li
-          className={location.pathname === "/settings" ? "link-hover" : "none"}
-        >
-          <NavLink to="/settings">
-            <span className="icon">
-              <FaUserCog />
-            </span>
-            <span className="path">Settings</span>
           </NavLink>
         </li>
       </ul>

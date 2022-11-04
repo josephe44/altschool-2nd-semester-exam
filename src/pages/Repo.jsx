@@ -32,7 +32,7 @@ function Repo() {
   return (
     <div className="eachRepo-container">
       <div>
-        <Link to="/">
+        <Link to="/repo-list">
           <button className="back-btn">
             <FaAngleDoubleLeft />
             <span> Back</span>
@@ -43,6 +43,7 @@ function Repo() {
         <div className="eachRepo-item">
           <div>
             <h3>{repo.name}</h3>
+            <p>{repo.description}</p>
             <div className="eachRepo-visit">
               <button className="visit-button">
                 <a target="_blank" rel="noreferrer" href={repo.html_url}>
@@ -51,7 +52,6 @@ function Repo() {
               </button>
             </div>
           </div>
-          <p>{repo.description}</p>
           <div className="banner-grid">
             <p className="eachRepo-banner">
               Type: {repo.owner.type ? repo.owner.type : "none"}

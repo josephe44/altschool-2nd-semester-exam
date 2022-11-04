@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import { UserProfile, Spinner, HomeRepoItem } from "../components";
+import { useLocation, Routes, Route } from "react-router-dom";
+import { RepoItems, Spinner, Pagination } from "../components";
+import Repo from "./Repo";
 
-function Home() {
-  const [user, setUser] = useState({});
+function Repos() {
   const [loading, setLoading] = useState(true);
   const [repos, setRepos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,21 +15,8 @@ function Home() {
   const token = process.env.REACT_APP_GITHUB_TOKEN;
 
   useEffect(() => {
-    fetchUser();
     fetchRepo();
   }, []);
-
-  // fetching the user
-  const fetchUser = async () => {
-    const response = await fetch(`${url}/users/josephe44`, {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    });
-    const data = await response.json();
-    setUser(data);
-    setLoading(false);
-  };
 
   const fetchRepo = async () => {
     const params = new URLSearchParams({
@@ -56,14 +43,26 @@ function Home() {
   const currentRepo = repos.slice(indexOfFirstNumber, indexOfLastNumber);
   const numberOfPages = Math.ceil(repos.length / repoPerPage);
 
-  const currRepo = currentRepo.slice(0, 6);
-
   return (
-    <div className="home">
-      <UserProfile user={user} />
-      <HomeRepoItem repos={currRepo} />
-    </div>
+    <>
+      <div className="home">
+        {location.pathname === "/repo-list" ? (
+          <>
+            <RepoItems repos={currentRepo} />
+            <Pagination
+              numberOfPages={numberOfPages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </>
+        ) : (
+          <Routes>
+            <Route path="repo/:repoName" element={<Repo />} />
+          </Routes>
+        )}
+      </div>
+    </>
   );
 }
 
-export default Home;
+export default Repos;

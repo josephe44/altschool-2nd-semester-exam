@@ -4,3 +4,5 @@ export { default as RepoItems } from "./RepoItems";
 export { default as Pagination } from "./Pagination";
 export { default as SafeComponent } from "./SafeComponent";
 export { default as Spinner } from "./Spinner";
+export { default as HomeRepoItem } from "./HomeRepoItem";
+export { default as Footer } from "./Footer";
